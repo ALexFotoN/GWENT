@@ -1,0 +1,10 @@
+using UnityEngine;
+
+public abstract class CardSO : ScriptableObject
+{
+    public string cardName;
+    public Sprite icon;
+    [TextArea] public string description;
+
+    public abstract void PlayCard();
+}
