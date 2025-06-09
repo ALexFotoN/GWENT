@@ -1,0 +1,15 @@
+using UnityEngine;
+
+public class Bootstrap : MonoBehaviour
+{
+    [Header("Коллекция карты")]
+    public CardSO[] allCards;
+
+    public CardObjectPool cardPool = new CardObjectPool();
+
+    private void Awake()
+    {
+        cardPool.Initialize(allCards);
+        // карты созданы и сообщения выведены!
+    }
+}
