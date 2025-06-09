@@ -1,0 +1,30 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CardObjectPool
+{
+    private List<CardSO> cards = new List<CardSO>();
+
+    public void Initialize(IEnumerable<CardSO> cardsToPool)
+    {
+        foreach (var card in cardsToPool)
+        {
+            cards.Add(card);
+
+            // Формируем строку с особенностями
+            string features = "";
+            if (card is IArcher) features += "дальнобойный; ";
+            if (card is IMeleeFighter) features += "ближний бой; ";
+            if (card is ISiegeWeapon) features += "осадное оружие; ";
+            if (card is ISpecialAbility sa) features += $"спец. способность: {sa.AbilityType}; ";
+            if (card is IRare) features += "редкая; ";
+            if (card is IUltimate) features += "ультимейт; ";
+            if (card is IHasStrength hs) features += $"сила: {hs.Strength}; ";
+            if (card is IWeatherCard) features += "погода; ";
+
+            Debug.Log($"Создана карта {card.cardName}; {card.description}; особенности: {features}");
+        }
+    }
+
+    public IEnumerable<CardSO> GetAllCards() => cards;
+}
