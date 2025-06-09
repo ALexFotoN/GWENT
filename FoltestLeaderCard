@@ -1,0 +1,158 @@
+// ====================== ЛИДЕР - ФОЛЬТЕСТ ======================
+[CreateAssetMenu(menuName = "GWENT/Leader/Foltest")]
+public class FoltestLeaderCard : CardSO, IUltimate
+{
+    public override void PlayCard()
+    {
+        Debug.Log("Фольтест: применение ульты!");
+    }
+
+    public void UseUlt()
+    {
+        Debug.Log("Ульта Фольтеста активирована!");
+    }
+}
+
+// ============ ЛИДЕР - ЭМГЫР ===================
+[CreateAssetMenu(menuName = "GWENT/Leader/Emhyr")]
+public class EmhyrLeaderCard : CardSO, IUltimate
+{
+    public override void PlayCard()
+    {
+        Debug.Log("Эмгыр: применение ульты!");
+    }
+
+    public void UseUlt()
+    {
+        Debug.Log("Ульта Эмгыра активирована!");
+    }
+}
+
+// ============ Командный рог (спец. способность) ===========
+[CreateAssetMenu(menuName = "GWENT/Special/CommanderHorn")]
+public class CommanderHornCard : CardSO, ISpecialAbility
+{
+    public SpecialAbilityType AbilityType => SpecialAbilityType.CommanderHorn;
+
+    public override void PlayCard()
+    {
+        UseAbility();
+    }
+
+    public void UseAbility()
+    {
+        Debug.Log("Командный рог: усиление отряда!");
+    }
+}
+
+// ========== Казнь (Execution) =============
+[CreateAssetMenu(menuName = "GWENT/Special/Execution")]
+public class ExecutionCard : CardSO, ISpecialAbility
+{
+    public SpecialAbilityType AbilityType => SpecialAbilityType.Execution;
+
+    public override void PlayCard()
+    {
+        UseAbility();
+    }
+
+    public void UseAbility()
+    {
+        Debug.Log("Казнь: уничтожает самую сильную карту противника!");
+    }
+}
+
+// ============= Мгла (погода) ==============
+[CreateAssetMenu(menuName = "GWENT/Weather/Fog")]
+public class FogCard : CardSO, IWeatherCard
+{
+    public override void PlayCard()
+    {
+        ApplyWeather();
+    }
+
+    public void ApplyWeather()
+    {
+        Debug.Log("Мгла: снижает силу дальнобойных!");
+    }
+}
+
+// ======= Дальнобойное орудие (арбалет) ==========
+[CreateAssetMenu(menuName = "GWENT/Siege/Catapult")]
+public class CatapultCard : CardSO, ISiegeWeapon, IHasStrength
+{
+    [SerializeField] private int strength = 8;
+    public int Strength => strength;
+
+    public override void PlayCard()
+    {
+        ApplyStrength();
+    }
+
+    public void ApplyStrength()
+    {
+        Debug.Log($"Применена карта Катапульта: сила {strength}");
+    }
+}
+
+// ======= Лучник ==========
+[CreateAssetMenu(menuName = "GWENT/Archer/Ballista")]
+public class BallistaCard : CardSO, IArcher, IHasStrength
+{
+    [SerializeField] private int strength = 5;
+    public int Strength => strength;
+
+    public override void PlayCard()
+    {
+        ApplyStrength();
+    }
+
+    public void ApplyStrength()
+    {
+        Debug.Log($"Применена карта Баллиста: сила {strength}");
+    }
+}
+
+// ======= Боец ближнего боя ==========
+[CreateAssetMenu(menuName = "GWENT/Melee/Soldier")]
+public class SoldierCard : CardSO, IMeleeFighter, IHasStrength
+{
+    [SerializeField] private int strength = 3;
+    public int Strength => strength;
+
+    public override void PlayCard()
+    {
+        ApplyStrength();
+    }
+
+    public void ApplyStrength()
+    {
+        Debug.Log($"Применена карта Солдат: сила {strength}");
+    }
+}
+
+// ====== Боец ближнего боя со способностью ШПИОН ==========
+[CreateAssetMenu(menuName = "GWENT/Melee/SpySoldier")]
+public class SpySoldierCard : CardSO, IMeleeFighter, IHasStrength, ISpecialAbility
+{
+    [SerializeField] private int strength = 2;
+    public int Strength => strength;
+
+    public SpecialAbilityType AbilityType => SpecialAbilityType.Spy;
+
+    public override void PlayCard()
+    {
+        ApplyStrength();
+        UseAbility();
+    }
+
+    public void ApplyStrength()
+    {
+        Debug.Log($"Применена карта Шпион-Солдат: сила {strength}");
+    }
+
+    public void UseAbility()
+    {
+        Debug.Log($"Специальная способность: Шпион !");
+    }
+}
