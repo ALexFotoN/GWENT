@@ -1,0 +1,25 @@
+public interface ISpecialAbility
+{
+    SpecialAbilityType AbilityType { get; }
+    void UseAbility();
+}
+public enum SpecialAbilityType
+{
+    None, Spy, Medic, Connection, Pretence, Twin, StrengthSurge, Execution, Berserk, Mardrem, AvengerCall, // и т.д.
+    CommanderHorn
+}
+
+public interface IRare { }
+public interface IUltimate
+{
+    void UseUlt();
+}
+public interface IHasStrength
+{
+    int Strength { get; }
+    void ApplyStrength();
+}
+public interface IWeatherCard
+{
+    void ApplyWeather();
+}
